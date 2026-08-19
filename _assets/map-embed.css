@@ -1,0 +1,7 @@
+/* Bản đồ Google nhúng — khung do _assets/map-embed.js dựng,
+   kích thước thừa hưởng từ thẻ ảnh cũ mà nó thay thế. */
+.wed-map {
+  border: 0;
+  display: block;
+  background: #eae4dc;   /* màu chờ trong lúc bản đồ tải */
+}

@@ -1,0 +1,19 @@
+/* ──────────────────────────────────────────────────────────────
+   Chữ đã dịch sang tiếng Nhật / tiếng Hàn
+   Chỉ áp cho đúng những phần tử _assets/i18n.js đã thay chữ.
+   ────────────────────────────────────────────────────────────── */
+
+[data-wed-t] {
+  /* Canva đặt white-space: nowrap rồi tự cắt sẵn từng dòng thành các
+     <span> riêng. Ta gộp lại thành một đoạn chữ nên phải cho xuống
+     dòng trở lại, không thì câu dài sẽ chạy tràn ra ngoài khung. */
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+
+  /* Font của Canva không có sẵn chữ Nhật/Hàn; để mặc thì trình duyệt
+     rơi xuống một font bất kỳ, nên ta chỉ định hẳn bộ font đẹp hơn. */
+  font-family:
+    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
+    'Apple SD Gothic Neo', 'Noto Serif KR',
+    Georgia, serif !important;
+}

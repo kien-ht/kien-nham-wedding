@@ -14,7 +14,7 @@
   'use strict';
 
   var CONFIG = {
-    src: '_assets/audio/canon-in-d.mp3',
+    src: '_assets/audio/canon-in-d.mp3?v=2', // đổi số này mỗi khi thay file nhạc, để trình duyệt khách tải bản mới
     volume: 0.35, // 0 – 1
     loop: true,
     label: 'Bật/tắt nhạc nền',

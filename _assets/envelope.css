@@ -1,0 +1,241 @@
+/* ──────────────────────────────────────────────────────────────
+   Phong bì mở thiệp
+   Markup do _assets/envelope.js tạo ra.
+   Bảng màu bám theo thiệp: kem #FBF7F2 · mực #2A2521 · hồng đất #B5675F
+
+   Lớp .envelope-sealed đặt trên <html> ngay trong <head>, để trang
+   Canva bên dưới không kịp loé lên trước khi phong bì hiện ra.
+   ────────────────────────────────────────────────────────────── */
+
+html.envelope-sealed #root { visibility: hidden; }
+html.envelope-sealed .bgm-toggle { opacity: 0; pointer-events: none; }
+html.envelope-sealed, html.envelope-sealed body { overflow: hidden; }
+
+/* ── nền phủ ───────────────────────────────────────────────── */
+
+/* padding phải nằm gọn trong chiều cao đã đặt, không cộng thêm ra ngoài
+   (nếu không tấm thiệp sẽ thò ra dưới đáy phong bì) */
+.wed-env-overlay,
+.wed-env-overlay * { box-sizing: border-box; }
+
+.wed-env-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483600;            /* trên cả nút nhạc nền */
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(120% 90% at 50% 22%, #fffdfa 0%, #fbf7f2 45%, #f1e7db 100%);
+  opacity: 1;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+.wed-env-overlay.is-leaving {
+  opacity: 0;
+  transform: scale(1.06);
+  pointer-events: none;
+}
+
+.wed-env-stack {
+  display: grid;
+  justify-items: center;
+  gap: 26px;
+}
+
+/* ── chữ ───────────────────────────────────────────────────── */
+
+.wed-env-guest,
+.wed-env-hint {
+  margin: 0;
+  color: #2a2521;
+  /* xếp thêm font CJK phía sau: Georgia không có chữ Nhật/Hàn nên
+     trình duyệt sẽ tự rơi xuống font kế tiếp cho từng chữ */
+  font-family: Georgia, 'Times New Roman',
+    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  text-align: center;
+}
+
+/* dòng chào khách — chỉ hiện khi có ?name=... trên đường link */
+.wed-env-guest {
+  font-size: clamp(17px, 4.6vw, 21px);
+  letter-spacing: 0.1em;
+  opacity: 0.88;
+  max-width: 22ch;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+
+.wed-env-hint {
+  font-size: clamp(16px, 3.8vw, 20px);
+  letter-spacing: 0.08em;
+  opacity: 0.78;
+  animation: wed-breathe 2.6s ease-in-out infinite;
+}
+
+.wed-env-overlay.is-opening .wed-env-guest,
+.wed-env-overlay.is-opening .wed-env-hint {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: none;
+}
+
+@keyframes wed-breathe {
+  0%, 100% { opacity: 0.78; transform: translateY(0); }
+  50%      { opacity: 0.42; transform: translateY(2px); }
+}
+
+/* ── nút bọc phong bì ──────────────────────────────────────── */
+
+.wed-env-btn {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wed-env-btn:focus-visible {
+  outline: 2px solid #2a2521;
+  outline-offset: 10px;
+  border-radius: 6px;
+}
+
+/* ── phong bì ──────────────────────────────────────────────── */
+
+.wed-env {
+  display: block;              /* là <span>, phải chuyển sang block mới ăn width/height */
+  --w: min(76vw, 320px);
+  --h: calc(var(--w) * 0.66);
+  --paper: #f0e3d3;        /* nắp — sáng nhất */
+  --paper-front: #e9d9c6;  /* miệng mặt trước */
+  --paper-deep: #decbb4;   /* chân mặt trước */
+  --paper-dark: #d4bfa6;   /* thân sau & mặt trong nắp — sẫm nhất */
+  --radius: 16px;          /* độ bo góc phong bì */
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  perspective: 900px;   /* KHÔNG dùng preserve-3d: sẽ xếp lớp theo chiều sâu
+                           và nắp phong bì đè lên tấm thiệp */
+  animation: wed-float 1.5s ease-in-out infinite;
+}
+
+.wed-env-overlay.is-opening .wed-env { animation: none; }
+
+@keyframes wed-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* thân sau */
+.wed-env__back {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--radius);
+  background: var(--paper-dark);
+  box-shadow: 0 22px 46px rgba(42, 37, 33, 0.22);
+}
+
+/* tấm thiệp trượt lên */
+.wed-env__card {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 7%;
+  height: 88%;
+  z-index: 2;
+  display: grid;
+  align-content: start;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 11%;
+  border: 1px solid rgba(42, 37, 33, 0.1);
+  border-radius: 3px;
+  background: #fffdfa;
+  box-shadow: 0 6px 18px rgba(42, 37, 33, 0.1);
+  transform: translateY(0);
+  transition: transform 0.85s cubic-bezier(0.22, 0.9, 0.25, 1);
+}
+
+.wed-env-overlay.is-revealing .wed-env__card { transform: translateY(-58%); }
+
+.wed-env__names {
+  margin: 0;
+  color: #2a2521;
+  font-family: Georgia, 'Times New Roman',
+    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-size: calc(var(--w) * 0.088);
+  letter-spacing: 0.14em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.wed-env__date {
+  margin: 0;
+  color: #b5675f;
+  font-family: Georgia, 'Times New Roman',
+    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-size: calc(var(--w) * 0.045);
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+/* mặt trước, khuyết chữ V ở mép trên */
+.wed-env__front {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: var(--radius);
+  background: linear-gradient(158deg, var(--paper-front) 0%, var(--paper-deep) 100%);
+  /* đáy chữ V bo tròn — polygon() không bo góc được, nên thay đỉnh nhọn
+     bằng một cung nhiều điểm. Số % bám theo tỉ lệ --h = --w * 0.66;
+     đổi tỉ lệ đó thì cung sẽ méo. */
+  clip-path: polygon(0 0, 48.30% 40.57%, 49.12% 41.07%, 50.00% 41.24%, 50.88% 41.07%, 51.70% 40.57%, 100% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* nắp trên, lật ra khi mở */
+.wed-env__flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100%;
+  height: calc(var(--h) * 0.6);
+  background: var(--paper);
+  /* mũi nắp bo tròn — xem ghi chú ở .wed-env__front */
+  clip-path: polygon(0 0, 100% 0, 52.17% 95.65%, 51.51% 96.70%, 50.78% 97.34%, 50.00% 97.56%, 49.22% 97.34%, 48.49% 96.70%, 47.83% 95.65%);
+  border-radius: var(--radius) var(--radius) 0 0;
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 2px 3px rgba(42, 37, 33, 0.12));
+}
+
+.wed-env-overlay.is-opening .wed-env__flap {
+  animation: wed-flap 0.78s cubic-bezier(0.6, 0.05, 0.3, 1) forwards;
+}
+
+/* z-index đổi giữa chừng để nắp chui ra sau tấm thiệp */
+@keyframes wed-flap {
+  0%   { transform: rotateX(0deg);   z-index: 4; }
+  49%  { z-index: 4; }
+  50%  { z-index: 1; }
+  100% { transform: rotateX(176deg); z-index: 1; background-color: var(--paper-dark); }
+}
+
+/* ── tôn trọng "giảm chuyển động" ──────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .wed-env,
+  .wed-env-hint,
+  .wed-env-overlay.is-opening .wed-env__flap { animation: none; }
+  .wed-env__card,
+  .wed-env-overlay { transition-duration: 0.2s; }
+}

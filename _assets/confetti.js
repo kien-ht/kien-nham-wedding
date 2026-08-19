@@ -239,6 +239,8 @@
     // chúc mừng khi khách vừa mở thiệp — chờ Canva vẽ xong, và nếu
     // tab đang ẩn thì để dành tới lúc khách quay lại.
     function greet() {
+      // Thiệp còn trong phong bì → để _assets/envelope.js gọi lúc khách mở.
+      if (window.__weddingIntroPending) return;
       if (document.hidden) {
         document.addEventListener('visibilitychange', function once() {
           if (document.hidden) return;
