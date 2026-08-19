@@ -1,0 +1,20 @@
+/* ──────────────────────────────────────────────────────────────
+   Hoa giấy (confetti) — lớp phủ vẽ bằng <canvas>
+   Markup do _assets/confetti.js tạo ra.
+   Bảng màu bám theo thiệp: kem #FBF7F2 · mực #2A2521
+   ────────────────────────────────────────────────────────────── */
+
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482000;   /* trên nội dung, dưới nút nhạc nền */
+  pointer-events: none;  /* không bao giờ chắn thao tác của khách */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Khách chọn "giảm chuyển động" thì tắt hẳn — js cũng đã tự bỏ qua,
+   dòng này chỉ để chắc chắn nếu có ai gọi thủ công. */
+@media (prefers-reduced-motion: reduce) {
+  .confetti-layer { display: none; }
+}
