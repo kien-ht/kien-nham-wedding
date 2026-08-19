@@ -1,0 +1,78 @@
+/* ──────────────────────────────────────────────────────────────
+   Nhạc nền — nút bật/tắt tiếng
+   Markup do _assets/audio-player.js tạo ra.
+   Bảng màu bám theo thiệp: kem #FBF7F2 · mực #2A2521
+   ────────────────────────────────────────────────────────────── */
+
+.bgm-toggle {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2147483000;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(42, 37, 33, 0.18);
+  background: rgba(251, 247, 242, 0.82);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 14px rgba(42, 37, 33, 0.1);
+
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.bgm-toggle:hover {
+  transform: scale(1.06);
+  background: rgba(251, 247, 242, 0.95);
+  border-color: rgba(42, 37, 33, 0.34);
+}
+
+.bgm-toggle:focus-visible {
+  outline: 2px solid #2a2521;
+  outline-offset: 3px;
+}
+
+.bgm-toggle svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: #2a2521;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bgm-toggle .bgm-speaker {
+  fill: #2a2521;
+  stroke: none;
+}
+
+/* đang tắt: gạch chéo · đang phát: sóng âm */
+.bgm-toggle .bgm-waves { opacity: 0; transition: opacity 0.22s ease; }
+.bgm-toggle .bgm-slash { opacity: 1; transition: opacity 0.22s ease; }
+.bgm-toggle[aria-pressed='true'] .bgm-waves { opacity: 1; }
+.bgm-toggle[aria-pressed='true'] .bgm-slash { opacity: 0; }
+
+/* nhịp thở nhẹ khi chưa phát được — để khách biết trang có nhạc */
+.bgm-toggle.is-armed { animation: bgm-pulse 2.4s ease-in-out infinite; }
+
+@keyframes bgm-pulse {
+  0%, 100% { box-shadow: 0 2px 14px rgba(42, 37, 33, 0.1); }
+  50%      { box-shadow: 0 2px 14px rgba(42, 37, 33, 0.1), 0 0 0 7px rgba(42, 37, 33, 0.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgm-toggle,
+  .bgm-toggle.is-armed { animation: none; transition: none; }
+}
+
+@media (max-width: 600px) {
+  .bgm-toggle { left: 16px; bottom: 16px; width: 40px; height: 40px; }
+  .bgm-toggle svg { width: 19px; height: 19px; }
+}
