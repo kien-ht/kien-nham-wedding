@@ -1,0 +1,75 @@
+/* ──────────────────────────────────────────────────────────────
+   Thanh đếm ngược — markup do _assets/countdown.js tạo ra.
+   Bảng màu bám theo thiệp: kem #FBF7F2 · mực #2A2521
+   ────────────────────────────────────────────────────────────── */
+
+.wed-countdown {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 2147482800;          /* trên nội dung, dưới nút nhạc và phong bì */
+  pointer-events: none;         /* không chắn thao tác của khách */
+
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 9px 18px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(42, 37, 33, 0.14);
+  background: rgba(251, 247, 242, 0.86);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 16px rgba(42, 37, 33, 0.12);
+
+  color: #2a2521;
+  font-family: Georgia, 'Times New Roman',
+    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  white-space: nowrap;
+}
+
+.wed-cd__cell {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.wed-cd__num {
+  font-size: 19px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;   /* số không nhảy qua nhảy lại */
+  letter-spacing: 0.02em;
+}
+
+.wed-cd__lab {
+  font-size: 9.5px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+/* đúng ngày cưới */
+.wed-countdown.is-now {
+  display: block;
+  padding: 11px 22px;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: #b5675f;
+}
+
+/* còn trong phong bì thì chưa hiện */
+html.envelope-sealed .wed-countdown { opacity: 0; }
+
+@media (max-width: 600px) {
+  .wed-countdown { bottom: 16px; gap: 13px; padding: 8px 14px; }
+  .wed-cd__num { font-size: 17px; }
+  .wed-cd__lab { font-size: 9px; letter-spacing: 0.12em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wed-countdown { transition: none; }
+}
