@@ -19,42 +19,33 @@
   };
 
   /* ── Chữ nghĩa theo ngôn ngữ ────────────────────────────────
-     ?locale=vietnamese | japanese | korean   (mặc định tiếng Việt)
+     ?locale=vietnamese | english   (mặc định tiếng Việt)
      ?name=Anh%20Tuan   → hiện một dòng chào riêng phía trên phong bì
 
-     Lưu ý: chỉ màn phong bì là đa ngữ. Nội dung thiệp bên trong do
-     Canva dựng sẵn nên vẫn giữ nguyên tiếng Việt.
+     Nội dung thiệp bên trong do _assets/i18n.js lo.
      {name} là chỗ thay tên khách.
      ────────────────────────────────────────────────────────── */
   var I18N = {
     vietnamese: {
       lang: 'vi',
-      guest: 'Thân mời {name}',
+      guest: 'Trân trọng kính mời {name}',
       hint: 'Chạm để mở thiệp',
       label: 'Chạm để mở thiệp cưới',
-      names: 'Kiên & Na',
+      names: 'Kiên & Nhâm',
       date: '26 . 09 . 2026',
     },
-    japanese: {
-      lang: 'ja',
-      guest: '{name} 様',
-      hint: 'タップして招待状を開く',
-      label: 'タップして結婚式の招待状を開きます',
-      names: 'Kiên & Na',
-      date: '2026 . 09 . 26',
-    },
-    korean: {
-      lang: 'ko',
-      guest: '{name} 님께',
-      hint: '탭하여 청첩장 열기',
-      label: '탭하여 청첩장을 엽니다',
-      names: 'Kiên & Na',
-      date: '2026 . 09 . 26',
+    english: {
+      lang: 'en',
+      guest: 'Dear {name}',
+      hint: 'Tap to open the invitation',
+      label: 'Tap to open the wedding invitation',
+      names: 'Kiên & Nhâm',
+      date: '26 . 09 . 2026',
     },
   };
 
-  // gọi tắt cũng nhận: vi/vn, ja/jp, ko/kr
-  var ALIAS = { vi: 'vietnamese', vn: 'vietnamese', ja: 'japanese', jp: 'japanese', ko: 'korean', kr: 'korean' };
+  // gọi tắt cũng nhận: vi/vn, en/eng
+  var ALIAS = { vi: 'vietnamese', vn: 'vietnamese', en: 'english', eng: 'english' };
 
   function query(key) {
     try { return new URLSearchParams(location.search).get(key); } catch (e) { return null; }

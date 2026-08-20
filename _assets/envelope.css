@@ -51,11 +51,7 @@ html.envelope-sealed, html.envelope-sealed body { overflow: hidden; }
 .wed-env-hint {
   margin: 0;
   color: #2a2521;
-  /* xếp thêm font CJK phía sau: Georgia không có chữ Nhật/Hàn nên
-     trình duyệt sẽ tự rơi xuống font kế tiếp cho từng chữ */
-  font-family: Georgia, 'Times New Roman',
-    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
-    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   text-align: center;
 }
 
@@ -168,9 +164,7 @@ html.envelope-sealed, html.envelope-sealed body { overflow: hidden; }
 .wed-env__names {
   margin: 0;
   color: #2a2521;
-  font-family: Georgia, 'Times New Roman',
-    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
-    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: calc(var(--w) * 0.088);
   letter-spacing: 0.14em;
   text-align: center;
@@ -180,9 +174,7 @@ html.envelope-sealed, html.envelope-sealed body { overflow: hidden; }
 .wed-env__date {
   margin: 0;
   color: #b5675f;
-  font-family: Georgia, 'Times New Roman',
-    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
-    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: calc(var(--w) * 0.045);
   letter-spacing: 0.2em;
   text-align: center;

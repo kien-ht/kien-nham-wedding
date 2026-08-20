@@ -16,11 +16,11 @@
 
   var TEXT = {
     vietnamese: { d: 'Ngày', h: 'Giờ', m: 'Phút', s: 'Giây', now: 'Hôm nay là ngày vui!' },
-    japanese:   { d: '日', h: '時間', m: '分', s: '秒', now: '本日が結婚式です！' },
-    korean:     { d: '일', h: '시간', m: '분', s: '초', now: '오늘이 바로 그날입니다!' },
+    english:    { d: 'Days', h: 'Hrs', m: 'Min', s: 'Sec', now: 'Today is the day!' },
   };
 
-  var ALIAS = { vi: 'vietnamese', vn: 'vietnamese', ja: 'japanese', jp: 'japanese', ko: 'korean', kr: 'korean' };
+  // gọi tắt cũng nhận: vi/vn, en/eng
+  var ALIAS = { vi: 'vietnamese', vn: 'vietnamese', en: 'english', eng: 'english' };
 
   function locale() {
     var q;

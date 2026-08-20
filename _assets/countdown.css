@@ -24,9 +24,7 @@
   box-shadow: 0 2px 16px rgba(42, 37, 33, 0.12);
 
   color: #2a2521;
-  font-family: Georgia, 'Times New Roman',
-    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
-    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   white-space: nowrap;
 }
 
