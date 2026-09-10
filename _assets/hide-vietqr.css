@@ -1,0 +1,8 @@
+/* ──────────────────────────────────────────────────────────────
+   Ẩn thẻ QR VietQR (id do Canva gắn sẵn) — nội dung nằm trong
+   page-data.js đã tối giản hoá nên không sửa trực tiếp được, chỉ
+   có thể ẩn bằng CSS chèn thêm, giống cách các file khác trong
+   _assets/ can thiệp vào trang xuất từ Canva.
+   ────────────────────────────────────────────────────────────── */
+
+#LBslv9VB2KbfszSy { display: none !important; }
