@@ -1,0 +1,55 @@
+/* ──────────────────────────────────────────────────────────────
+   Nút sao chép số, chèn làm CON của thẻ QR VietQR (id
+   LBslv9VB2KbfszSy), nhô lên ngay phía trên thẻ — markup do
+   _assets/copy-button.js tạo ra. Bảng màu bám theo thiệp: kem
+   #FBF7F2 · mực #2A2521, giống .wed-countdown.
+   ────────────────────────────────────────────────────────────── */
+
+.wed-copy {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 3px;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: max-content;
+  max-width: none;
+  padding: 3px 10px;
+  box-sizing: border-box;
+  line-height: 1.2;
+
+  border: 1px solid rgba(42, 37, 33, 0.2);
+  border-radius: 999px;
+  background: rgba(251, 247, 242, 0.9);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  color: #2a2521;
+  font-family: Georgia, 'Times New Roman',
+    'Hiragino Mincho ProN', 'Yu Mincho', 'Noto Serif JP',
+    'Apple SD Gothic Neo', 'Noto Serif KR', serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.wed-copy:hover { background: rgba(251, 247, 242, 1); }
+.wed-copy:active { transform: translateX(-50%) scale(0.97); }
+.wed-copy:focus-visible { outline: 2px solid #b5675f; outline-offset: 2px; }
+
+.wed-copy__icon { width: 11px; height: 11px; flex: none; }
+
+.wed-copy__num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.wed-copy.is-copied { border-color: rgba(181, 103, 95, 0.5); }
+.wed-copy.is-copied .wed-copy__num { color: #b5675f; letter-spacing: 0.02em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wed-copy { transition: none; }
+}
