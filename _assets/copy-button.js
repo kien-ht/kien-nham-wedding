@@ -1,5 +1,5 @@
 /* ──────────────────────────────────────────────────────────────
-   Nút sao chép số tài khoản, đặt ngay phía trên thẻ QR VietQR.
+   Nút sao chép số tài khoản, đặt ngay phía dưới thẻ QR VietQR.
 
    Chèn thẳng làm CON của thẻ QR (id LBslv9VB2KbfszSy) thay vì làm
    anh em (sibling) rồi tự tính toạ độ: thẻ QR đã là position:
@@ -7,8 +7,8 @@
    khách cuộn tới lần đầu), nên mọi phần tử con đặt position:
    absolute bên trong sẽ tự động "ăn theo" transform/animation đó
    — khỏi cần tự đọc lại transform hay rình MutationObserver.
-   overflow của chính thẻ QR là visible nên đặt nhô lên trên
-   (bottom:100%) không bị cắt mất.
+   overflow của chính thẻ QR là visible nên đặt nhô xuống dưới
+   (top:100%) không bị cắt mất.
 
    Canva dựng phần này khi khách cuộn tới chứ không có sẵn lúc tải
    trang, nên cần MutationObserver canh, giống map-embed.js.

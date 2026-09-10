@@ -1,6 +1,6 @@
 /* ──────────────────────────────────────────────────────────────
    Nút sao chép số, chèn làm CON của thẻ QR VietQR (id
-   LBslv9VB2KbfszSy), nhô lên ngay phía trên thẻ — markup do
+   LBslv9VB2KbfszSy), nhô xuống ngay phía dưới thẻ — markup do
    _assets/copy-button.js tạo ra. Bảng màu bám theo thiệp: kem
    #FBF7F2 · mực #2A2521, giống .wed-countdown.
    ────────────────────────────────────────────────────────────── */
@@ -8,8 +8,8 @@
 .wed-copy {
   position: absolute;
   left: 50%;
-  bottom: 100%;
-  margin-bottom: 3px;
+  top: 100%;
+  margin-top: 3px;
   transform: translateX(-50%);
 
   display: flex;
